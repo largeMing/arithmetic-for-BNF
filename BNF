@@ -1,0 +1,32 @@
+"a"
+
+"b"
+
+<PrimaryExpression> = <DecimalNumber> |
+    "(" <LogicalExpression> ")"
+
+// 加法
+<Number> = "0" | "1" | "2" | ...... | "9"
+
+<DecimalNumber> = "0" | (("1" | "2" | ...... | "9") <Number>* )
+
+<MultiplicativeExpression> = <PrimaryExpression> |
+    <MultiplicativeExpression> "*" <PrimaryExpression> |
+    <MultiplicativeExpression> "/" <PrimaryExpression>
+
+<AdditiveExpression> = <MultiplicativeExpression> |
+    <AdditiveExpression> "+" <MultiplicativeExpression> |
+    <AdditiveExpression> "-" <MultiplicativeExpression>
+
+<LogicalExpression> = <AdditiveExpression> |
+    <LogicalExpression> "||" <AdditiveExpression> |
+    <LogicalExpression> "&&" <AdditiveExpression>
+
+"```四则运算" <LogicalExpression> "```" = "```四则运算"
+    (<AdditiveExpression> |
+    <LogicalExpression> "||" <AdditiveExpression> |
+    <LogicalExpression> "&&" <AdditiveExpression>)
+    "```"
+
+
+
